@@ -1,5 +1,6 @@
 #include "PID.h"
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -25,12 +26,24 @@ void PID::UpdateError(double cte) {
   double tau_d = Kd;
   double tau_i = Ki;
   double diff_cte;
+  //double int_cte;
+
+  //difference between the previous and current CTE for D
+
+  if(prev_cte.size()!=0){diff_cte = cte - prev_cte.back();}
+  else{diff_cte = cte ;}
   prev_cte.push_back(cte);
-  diff_cte = prev_cte.back();
+
+
+
+
+  //sum of all past CTE for I
+  //for (auto& n : prev_cte)
+  //  int_cte += n;
 
   p_error = tau_p * cte ;
   d_error = tau_d * diff_cte;
-//  d_error = tau_i * int_cte;
+  //i_error = tau_i * int_cte;
 
 
 }
