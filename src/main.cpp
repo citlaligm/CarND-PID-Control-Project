@@ -35,7 +35,9 @@ int main()
 
   PID pid;
   // TODO: Initialize the pid variable.
-  pid.Init(0.1,0.1,0.1);
+  // Kpi, double Kii, double Kdi
+  //pdi = 0.05,0.006,5
+  pid.Init(0.05,0.006,5);
 
 
 
@@ -70,7 +72,7 @@ int main()
 
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
-          std::cout << "I: " << pid.i_error << " D: " << pid.d_error << std::endl;
+          std::cout << "P: " << pid.p_error << "\t D: " << pid.d_error << "\t I: " << pid.i_error  << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
